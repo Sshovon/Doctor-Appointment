@@ -12,7 +12,7 @@ router.post('/create',async (req,res)=>{
             name,email,age,schedule,mobile
         })
         await appointment.generateID();
-
+        
         res.send(appointment);
 
     }catch(e){
