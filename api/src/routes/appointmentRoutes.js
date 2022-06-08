@@ -11,8 +11,10 @@ router.post('/create',async (req,res)=>{
         const appointment=new Appointment({
             name,email,age,schedule,mobile
         })
+        const [date,time] = schedule;
         await appointment.generateID();
-        
+        const appointmentDate= await Schedule.findOne({date})
+        await appointmentDate.bookSchedule(time); 
         res.send(appointment);
 
     }catch(e){
