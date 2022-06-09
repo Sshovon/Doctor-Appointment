@@ -5,15 +5,21 @@ const router = express.Router();
 const Schedule = require('../models/scheduleModel')
 const Appointment=require('../models/appointmentModel');
 
+
+
 router.post('/create',async (req,res)=>{
     try{
         const {email,mobile,age,schedule,name} =req.body;
         const appointment=new Appointment({
             name,email,age,schedule,mobile
         })
-        const [date,time] = schedule;
+        console.log(schedule)     
+        const [date,time] = schedule.split(' ');
+        console.log(date)
+        console.log(time)
         await appointment.generateID();
         const appointmentDate= await Schedule.findOne({date})
+        console.log(appointmentDate)
         await appointmentDate.bookSchedule(time); 
         res.send(appointment);
 
