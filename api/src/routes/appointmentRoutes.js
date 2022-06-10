@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
 
-
 const Schedule = require('../models/scheduleModel')
 const Appointment=require('../models/appointmentModel');
 
@@ -41,6 +40,7 @@ router.get('/schedule/:date',async(req,res)=>{
         res.send({error})
     }
 })
+
 
 
 module.exports = router
