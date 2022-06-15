@@ -41,6 +41,9 @@ const appointmentSchema = new Schema({
     visited:{
         type:Boolean,
         default:false
+    },
+    description:{
+        type:String
     }
 }) 
 

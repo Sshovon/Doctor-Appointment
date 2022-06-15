@@ -8,9 +8,9 @@ const Appointment=require('../models/appointmentModel');
 
 router.post('/create',async (req,res)=>{
     try{
-        const {email,mobile,age,schedule,name} =req.body;
+        const {email,mobile,age,schedule,name,description} =req.body;
         const appointment=new Appointment({
-            name,email,age,schedule,mobile
+            name,email,age,schedule,mobile,description
         })
         console.log(schedule)     
         const [date,time] = schedule.split(' ');
@@ -37,6 +37,16 @@ router.get('/schedule/:date',async(req,res)=>{
 
     }catch(e){
         const error = e.message;
+        res.send({error})
+    }
+})
+
+router.get('/view',async (req,res)=>{
+    try{
+        const result = await Appointment.find({});
+        res.send(result)
+    }catch(e){
+        const error=  e.message;
         res.send({error})
     }
 })
