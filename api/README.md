@@ -59,3 +59,23 @@
         ]
 } 
 ```
+
+## Doctor routes `/doctor`
+
+1. `/signin`
+
+```{
+    "email":"",
+    "password":""
+
+}
+```
+2. `/signup`
+```{
+    "email":"",
+    "password":"",
+    "aboutMe":"",
+    "image":""
+
+}
+```
