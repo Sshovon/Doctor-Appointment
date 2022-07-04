@@ -6,7 +6,7 @@ const Prescription = require('../models/prescriptionModel')
 
 router.post('/create',async(req,res)=>{
     try{
-        const {doctorComment,appointmentID,drugs,tests,nextVisit} = req.body;
+        const {doctorAdvise,appointmentID,drugs,tests,nextVisit} = req.body;
         const prescription = new Prescription({
             doctorComment,drugs,tests,appointmentID,nextVisit
         })
@@ -25,7 +25,9 @@ router.post('/create',async(req,res)=>{
 
 router.get('/view',async(req,res)=>{
     try{
-
+        const ID=req.query.id;
+        const prescription = Prescription.findOne({ID});
+        res.send(prescription)
         
     }catch(e){
         const error = e.message;

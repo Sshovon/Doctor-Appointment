@@ -9,7 +9,7 @@ const prescriptionSchema = new Schema({
     ID:{
         type:String
     },
-    doctorComment:{
+    doctorAdvise:{
         type:String
     },
     appointmentID:{
@@ -18,28 +18,25 @@ const prescriptionSchema = new Schema({
     },
     drugs:[
         {
-            drug:String,
-            dose:String,
-            time:{
+            medName:String,
+            time:[
+                {
+                    type:String
+                }
+            ],
+            medtype:{
                 type:String,
-                default:'000'
-            },
-            category:{
-                type:String,
-                enum:['tablet','capsule','liquid'],
+                enum:['Tablet','Capsule','Syrup'],
                 messsage:'{VALUE} is not a valid drug type'
-            }
+            },
+            duration:String,
         }
     ],
     tests:[
         {
             test:String
         }
-    ],
-    nextVisit:{
-        type:String,
-        default:"After 1 week"
-    }
+    ]
 },{
     toJSON:{virtuals:true},
     toObject:{virtuals:true}

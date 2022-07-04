@@ -27,28 +27,29 @@
 ```
 
 ## Prescription routes `/prescription`
-1.`/create`
+1.`post /create`
 ```{
     "appointmentID":"x9e8ai",
     "doctorComment":"Fever",
-    "drugs":[ {
-        "drug":"napa",
-        "dose":"100mg",
-        "time":"101",
-        "category":"tablet"
+    "drugs":[ 
+        {
+        "medName":"napa 500mg",
+        "time":["Breakfast","Dinner"],
+        "category":"Tablet",
+        "duration:"7 days"
     },
     {
-        "drug":"fast",
-        "dose":"100mg",
-        "time":"111",
-        "category":"tablet"
+        "medName":"napa 500mg",
+        "time":["Breakfast","Dinner"],
+        "category":"Syrup",
+         "duration:"7 days"
     },
     {
-        "drug":"ace",
-        "dose":"100mg",
-        "time":"101",
-        "category":"tablet"
-    }
+        "medName":"napa 500mg",
+        "time":["Breakfast","Dinner"],
+        "category":"Capsule",
+         "duration:"7 days"
+    },
         ],
     "tests":[
         {
@@ -59,6 +60,8 @@
         ]
 } 
 ```
+2.`get /view?id=prescriptionid`
+
 
 ## Doctor routes `/doctor`
 
