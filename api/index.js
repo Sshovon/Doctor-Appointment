@@ -7,7 +7,7 @@ const cors = require('cors')
 app.use(cors())
 const port = process.env.PORT || 5000
 require('./src/db/mongoose')
-//require('./src/utilities/seedData')
+// require('./src/utilities/seedData')
 
 
 const appointment = require('./src/routes/appointmentRoutes')
@@ -17,7 +17,7 @@ const doctorRoutes= require('./src/routes/doctorRoutes')
 
 app.use(express.json());
 app.use('/appointment',appointment)
-app.use('/mail',mailRoute)
+app.use('/mail',mailRoute) 
 app.use('/prescription',prescriptionRoutes)
 app.use('/doctor',doctorRoutes)
 
