@@ -18,25 +18,17 @@ const prescriptionSchema = new Schema({
     },
     drugs:[
         {
-            medName:String,
-            time:[
-                {
-                    type:String
-                }
-            ],
-            medtype:{
-                type:String,
-                enum:['Tablet','Capsule','Syrup'],
-                messsage:'{VALUE} is not a valid drug type'
-            },
+            name:String,
+            time:String,
+            medType:String,
             duration:String,
+            comment:String
         }
     ],
-    tests:[
-        {
-            test:String
-        }
-    ]
+    tests: String,
+    nextVisit:String,
+    oe:String,
+    complain:String
 },{
     toJSON:{virtuals:true},
     toObject:{virtuals:true}

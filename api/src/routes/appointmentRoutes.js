@@ -6,22 +6,15 @@ const Appointment = require("../models/appointmentModel");
 
 router.post("/create", async (req, res) => {
   try {
-    const { email, mobile, age, schedule, name, description } = req.body;
+    const { schedule, description } = req.body;
     const appointment = new Appointment({
-      name,
-      email,
-      age,
       schedule,
-      mobile,
       description,
     });
-    console.log(schedule);
     const [date, time] = schedule.split(" ");
-    console.log(date);
-    console.log(time);
+
     await appointment.generateID();
     const appointmentDate = await Schedule.findOne({ date });
-    console.log(appointmentDate);
     await appointmentDate.bookSchedule(time);
     res.send(appointment);
   } catch (e) {
@@ -40,16 +33,39 @@ router.get("/schedule/:date", async (req, res) => {
     res.send({ error });
   }
 });
+router.get("/reschedule", async (req, res) => {
+  try {
+    const {schedule} = req.body;
+    const [date, time] = schedule.split(" ");
+    const prevSchedule = await Schedule.findOne(date);
+    prevSchedule.schedules.map(async(el)=>{
+      if(el.time === time){
+        el.booked=false;
+      }
+    })
+    await prevSchedule.save();
+
+    res.send({success:true});
+  } catch (e) {
+    const error = e.message;
+    res.send({ error });
+  }
+});
+
+
+
 
 router.get("/view", async (req, res) => {
   try {
     const ID = req.query.ID;
     if (ID) {
-      const result = await Appointment.find({ID});
+      const result = await Appointment.find({ ID });
       res.send(result);
     } else {
-      const result = await Appointment.find({});
-      console.log(result)
+      const result = await Appointment.find({})
+        .sort({ schedule: "asc" })
+        .exec();
+      console.log(result);
       res.send(result);
     }
   } catch (e) {

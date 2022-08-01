@@ -1,0 +1,1 @@
+npm --prefix frontend install && npm --prefix frontend start
