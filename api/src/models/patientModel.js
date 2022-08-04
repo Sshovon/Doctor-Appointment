@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-
+const validator = require("validator");
 const patientSchema = new Schema(
   {
     name: {
@@ -12,13 +12,14 @@ const patientSchema = new Schema(
       type: String,
       required: true,
     },
-    gender:{
-        type:String,
-        required:true
+    gender: {
+      type: String,
+      required: true,
     },
     nid: {
-        type:String,
-        required:true,
+      type: String,
+      required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -56,9 +57,25 @@ const patientSchema = new Schema(
 
 patientSchema.virtual("appointment", {
   ref: "Appointment",
-  localField: "appointmentID",
-  foreignField: "ID",
+  localField: "nid",
+  foreignField: "nid",
 });
+
+patientSchema.methods.toJSON = function () {
+  const patient = this.toObject();
+  //console.log(patient)
+  delete patient._id;
+  let today = new Date();
+  let birthDate = new Date(patient.dob);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  let m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))  {
+    age--;
+  }
+  patient.age=age;
+  return patient;
+};
+
 
 const Patient = model("Patient", patientSchema);
 module.exports = Patient;

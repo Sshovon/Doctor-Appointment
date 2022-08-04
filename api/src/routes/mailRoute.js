@@ -6,7 +6,9 @@ const {createTransport} = require('nodemailer')
 
 router.post('/send',async(req,res)=>{
     try{
-        const {schedule,ID, name,email} = req.body;
+        console.log('mail routes')
+        console.log(req.body)
+        const {schedule,ID, patient} = req.body;
         const transport =createTransport({
             service:'gmail',
             auth:{
@@ -14,6 +16,8 @@ router.post('/send',async(req,res)=>{
                 pass:process.env.pass
             }
         })
+        const email=patient[0].email;
+        const name=patient[0].name
         const mailOptions={
             from:'Doctor Appointment 👨‍⚕️ <web.devmail.00@gmail.com>',
             to:`${email}`,

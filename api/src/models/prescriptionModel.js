@@ -9,9 +9,11 @@ const prescriptionSchema = new Schema({
     ID:{
         type:String
     },
-    doctorAdvise:{
-        type:String
-    },
+    doctorAdvise:[
+        {
+            type:String,
+        }
+    ],
     appointmentID:{
         type:String,
         required:true
@@ -27,8 +29,16 @@ const prescriptionSchema = new Schema({
     ],
     tests: String,
     nextVisit:String,
-    oe:String,
-    complain:String
+    oe:[
+        {
+            type:String,
+        }
+    ],
+    complain:[
+        {
+            type:String,
+        }
+    ]
 },{
     toJSON:{virtuals:true},
     toObject:{virtuals:true}

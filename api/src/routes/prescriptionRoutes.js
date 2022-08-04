@@ -6,6 +6,7 @@ const Appointment = require('../models/appointmentModel')
 
 router.post('/create',async(req,res)=>{
     try{
+        console.log(req.body);
         const {doctorAdvise,appointmentID,drugs,tests,oe,complain,nextVisit} = req.body;
         const prescription = new Prescription({
             doctorAdvise,drugs,tests,appointmentID,oe,complain,nextVisit
@@ -15,10 +16,10 @@ router.post('/create',async(req,res)=>{
         appointment.visited=true;
         await appointment.save()
         
-        //const [result]=await Prescription.find({ID:prescription.ID}).populate('appointment')
-        //result.appointment[0].visited=true;
-        //await result.save()
-        //console.log(result)
+        const [result]=await Prescription.find({ID:prescription.ID}).populate('appointment')
+        result.appointment[0].visited=true;
+        await result.save()
+        console.log(result)
         res.send("success")
         
     }catch(e){
