@@ -40,17 +40,21 @@ router.get("/schedule/:date", async (req, res) => {
     res.send({ error });
   }
 });
-router.get("/reschedule", async (req, res) => {
+router.get("/reschedule/:id", async (req, res) => {
   try {
-    const { schedule } = req.body;
+    const id=req.params.id;
+    console.log(id)
+    const [appointment]=await Appointment.find({ID:id})
+    const {schedule}=appointment
     const [date, time] = schedule.split(" ");
-    const prevSchedule = await Schedule.findOne(date);
+    const prevSchedule = await Schedule.findOne({date});
     prevSchedule.schedules.map(async (el) => {
       if (el.time === time) {
         el.booked = false;
       }
     });
     await prevSchedule.save();
+    await Appointment.deleteOne({ID:id})
     res.send({ success: true });
   } catch (e) {
     const error = e.message;

@@ -18,8 +18,8 @@ router.post("/send", async (req, res) => {
       from: "Doctor Appointment 👨‍⚕️ <web.devmail.00@gmail.com>",
       to: email,
       subject: `Verifying OTP`,
-      text:`You requested for an OTP. Your OTP is ${otp.otp}. This will expire within 5 minutes.`,
-      html:`<h3>You requested for an OTP. Your OTP is ${otp.otp}. This will expire within 5 minutes.<h3>`
+      text:`You requested for an OTP. Your OTP is ${code}. This will expire within 5 minutes.`,
+      html:`<h3>You requested for an OTP. Your OTP is ${code}. This will expire within 5 minutes.<h3>`
     };
     await mailTransporter.sendMail(mailDetails);
     res.send(code);
@@ -29,11 +29,10 @@ router.post("/send", async (req, res) => {
   }
 });
 
-router.post("/verify/:otp", async (req, res) => {
+router.post("/verify", async (req, res) => {
   try {
     
-    const otp = req.query.otp;
-    const email = req.query.email;
+    const {otp,email} = req.body
     const result = await OTP.verifyOTP(email, otp);
     res.send({ message: result });
   } catch (e) {
