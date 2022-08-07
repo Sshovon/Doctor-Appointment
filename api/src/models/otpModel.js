@@ -53,6 +53,7 @@ otpSchema.pre("save", async function (next) {
   if (otp.isModified("otp")) {
     otp.otp = await bcryptjs.hash(otp.otp, 8);
   }
+  
   next();
 });
 

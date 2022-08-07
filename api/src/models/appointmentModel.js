@@ -19,13 +19,27 @@ const appointmentSchema = new Schema({
     },
     description:{
         type:String
+    },
+    nid:{
+        type:String
     }
+},{
+    toJSON:{virtuals:true},
+    toObject:{virtuals:true}
 }) 
+
+appointmentSchema.virtual('patient',{
+    ref:'Patient',
+    localField:'nid',
+    foreignField:'nid'
+})
+
 
 
 appointmentSchema.methods.generateID = async function(){
     const user= this;
     user.ID=createHash(hashLength)
+    console.log(`in id ${user}`)
     await user.save();
 
 }

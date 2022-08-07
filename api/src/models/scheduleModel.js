@@ -20,6 +20,7 @@ const scheduleSchema = new Schema({
 
 
 scheduleSchema.statics.findSchedule = async function(date){
+    console.log(`date in findschedule ${date}`)
     const schedule= await Schedule.find({date});
     if(schedule.length) return schedule[0];
     console.log('new date')
@@ -41,6 +42,7 @@ scheduleSchema.statics.findSchedule = async function(date){
 }
 
 scheduleSchema.methods.bookSchedule = async function(time){
+    console.log(`time in bookschedule ${time}`)
     const schedule =this;
     schedule.schedules.every((element)=>{
         if(element.time===time){
