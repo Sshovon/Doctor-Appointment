@@ -1,0 +1,73 @@
+  .column {
+    display: inline-block;
+  }
+
+  
+  .med-form {
+    margin-bottom: 32px;
+  }
+  
+  .med-input {
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #5d0cff;
+    outline: none;
+    width: 320px;
+
+  }
+  
+
+  .med-button {
+    padding: 16px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    outline: none;
+    background-color: #b299f0;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+
+  .med-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px auto;
+
+    /* margin-bottom: '4px'; */
+    color: whitesmoke;
+    background-color: #b299f0;
+   
+  
+    padding: 16px;
+    border-radius: 5px;
+    width: 90%;
+  }
+  
+
+
+  
+  .icons {
+    display: inline-flex;
+    /* justify-content: space-between; */
+
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .timer {
+    font-family: "Montserrat";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* .text {
+    color: #aaa;
+  } */
+  
+  .value {
+    font-size: 40px;
+  }
