@@ -125,7 +125,7 @@ const AppointmentScreen = () => {
       <br />
       <br />
       <FormContainer>
-        <h1>Patient's Information</h1>
+        <h1>Appointment</h1>
         <br />
         {/* {message && <Message variant="danger">{message}</Message>} */}
         <Form onSubmit={submitHandler}>
@@ -136,22 +136,24 @@ const AppointmentScreen = () => {
               placeholder="Enter your NID"
               value={nid}
               onChange={(e) => setNid(e.target.value)}
+              style={{ marginTop: "-20px" }}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
+            <Form.Label style={{ marginTop: "15px" }}>Description</Form.Label>
             <Form.Control
               type="description"
               placeholder="Describe your disease in a few word"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              style={{ marginTop: "-20px" }}
             ></Form.Control>
           </Form.Group>
 
-          <Row>
+          <Row style={{ marginTop: "15px" }}>
             <Col md={4}>
               <Form.Group controlId="date">
-                <Form.Label>Pick a Date</Form.Label>
+                <Form.Label >Pick a Date</Form.Label>
                 <DatePicker
                   selected={selectedDate}
                   onChange={(date) => handleDateSelect(date)}

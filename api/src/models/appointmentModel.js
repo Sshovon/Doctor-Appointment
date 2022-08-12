@@ -22,6 +22,10 @@ const appointmentSchema = new Schema({
     },
     nid:{
         type:String
+    },
+    expired:{
+        type:Boolean,
+        default:false
     }
 },{
     toJSON:{virtuals:true},

@@ -65,14 +65,16 @@ function SigninScreen({isAuth}) {
               placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              style={{ marginTop: "-20px" }}
             />
           </Form.Group>
           <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label style={{ marginTop: "15px" }}>Password</Form.Label>
             <Form.Control
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{ marginTop: "-20px" }}
             />
           </Form.Group>
           <div style={{ marginTop: "20px",display: "flex", justifyContent: "space-between" }}>
@@ -83,6 +85,7 @@ function SigninScreen({isAuth}) {
               height: "50px",
               left:"5%"
             }}
+            
           >
             Sign in
           </Button>

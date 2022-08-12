@@ -5,6 +5,14 @@ const Schedule = require("../models/scheduleModel");
 const Appointment = require("../models/appointmentModel");
 const Patient = require("../models/patientModel");
 
+
+function isBeforeToday(date) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return date < today;
+}
+
+
 router.post("/create", async (req, res) => {
   try {
     const { schedule, description, nid } = req.body;
@@ -88,5 +96,24 @@ router.get("/view", async (req, res) => {
     
   }
 });
+
+router.get('/expire', async (req,res)=>{
+  try{
+    const data = await Appointment.find({});
+    data.map( async (item)=>{
+      const date= item.schedule.split(' ')[0]
+      if(isBeforeToday(new Date(date)) && !item.visited ){
+
+        item.expired=true
+      }
+      await item.save();
+    })
+    res.send(data);
+  }catch(e){
+    const error = e.message;
+    res.send({ error });
+  }
+
+})
 
 module.exports = router;

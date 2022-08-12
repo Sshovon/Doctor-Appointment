@@ -1,5 +1,6 @@
 const axios = require('axios')
 
+
 const data = async ()=>{
     const credentials={
         email:"doctor@gmail.com",
@@ -98,6 +99,15 @@ const medData = async ()=>{
 
 }
 
+
+
+const filterExpiredAppointment = async ()=>{
+  const result = await axios.get(`http://localhost:${process.env.PORT}/appointment/expire`)
+  console.log(result.data)
+}
+
+
 //data();
 //appointmentData()
 medData()
+filterExpiredAppointment()

@@ -88,6 +88,8 @@ function RescheduleScreen() {
 
   return (
     <div>
+      <br />
+      <br />
       {!verified && (
         <FormContainer>
           <h1>Reschedule Appointment</h1>
