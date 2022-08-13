@@ -6,7 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {Modal, Box, TextField } from "@mui/material";
+import {Modal, Box, TextField, autocompleteClasses } from "@mui/material";
 import Button from "@mui/material/Button";
 
 
@@ -124,7 +124,7 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
     setOpen(false);
     navigate('/')
   }
-  const style = {
+  const boxStyle = {
     position: "relative",
     top: "50%",
     left: "50%",
@@ -138,8 +138,13 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
     height: "100%",
   };
 
+  const prescriptionStyle = {
+    margin: 'auto',
+    width: '75%'
+  }
+
   return (
-    <>
+    <div style={prescriptionStyle}>
       <TableContainer component={Paper} style={{ width: "100%" }}>
         <Table aria-label="spanning table">
           <TableHead>
@@ -239,7 +244,7 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
         aria-describedby="modal-modal-description"
         // disableScrollLock= {open}
       >
-        <Box sx={style}>
+        <Box sx={boxStyle}>
           <TableContainer
             component={Paper}
             ref={ref}
@@ -326,7 +331,7 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
           
         </Box>
       </Modal>
-    </>
+    </div>
   );
 });
 

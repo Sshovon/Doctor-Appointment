@@ -12,6 +12,7 @@ import Prescription from "./components/Prescription";
 import './App.css'
 import PrescriptionHistory from "./components/PrescriptionHistory";
 import RescheduleScreen from "./screens/RescheduleScreen";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
   
     <BrowserRouter>
     <Header />
+    <Toaster/>
       <Routes>
         <Route path="/" element={<LandingScreen/> } exact/>
         <Route path="/patientLogin" element={<PatientRegistration/>} />

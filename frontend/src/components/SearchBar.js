@@ -15,6 +15,7 @@ import {
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -50,7 +51,6 @@ function SearchBar({ placeholder, data }) {
     setFilteredData([]);
     setWordEntered("");
   };
-
   return (
     <>
       <div
@@ -101,8 +101,11 @@ function SearchBar({ placeholder, data }) {
                     <Card style={{ backgroundColor:'#e1f9fc'}}>
                       <CardActionArea
                         onClick={() => {
-                          
-                          if(el.visited){
+                          console.log(el)
+                          if(el.expired){
+                            toast.error("Appointment is expired!")
+                          }
+                          else if(el.visited){
                             window.localStorage.setItem("id", el.ID);
                             navigate("/prescriptions");
                           }else{
@@ -113,8 +116,9 @@ function SearchBar({ placeholder, data }) {
                       >
                         <CardContent>
                           <Typography gutterBottom variant="h6" component="div">
-                            {el.patient[0].name}
+                          {el.patient[0].name} 
                           </Typography>
+
                           <Typography
                             variant="button"
                             color="text.secondary"
@@ -129,23 +133,33 @@ function SearchBar({ placeholder, data }) {
                           >
                             Time : {el.schedule.split(" ")[1]} pm
                           </Typography>
-
-                          {el.visited && (
+                          {el.expired && (
                             <Typography
                               variant="button"
                               color="text.secondary"
                               component="div"
                             >
-                              <p style={{ color: "#00a700" }}>Prescribed</p>
+                              {/* <p style={{ color: "#FF0000" }}>Expired</p> */}
+                              <i class="fas fa-ban" style={{color:"#FF0000"}}> Expired</i>
                             </Typography>
                           )}
-                          {!el.visited && (
+                          {el.visited && !el.expired && (
                             <Typography
                               variant="button"
                               color="text.secondary"
                               component="div"
                             >
-                              <i class="fas fa-check-circle" style={{color:"#1bc8d4"}}> Scheduled</i>
+                              {/* <p style={{ color: "#00a700" }}>Prescribed</p> */}
+                              <i class="fas fa-check-circle" style={{color:"#00a700"}}> Prescribed</i>
+                            </Typography>
+                          )}
+                          {!el.visited && !el.expired && (
+                            <Typography
+                              variant="button"
+                              color="text.secondary"
+                              component="div"
+                            >
+                              <i class="fas fa-calendar-day" style={{color:"#1bc8d4"}}> Scheduled</i>
                               
                             </Typography>
                           )}

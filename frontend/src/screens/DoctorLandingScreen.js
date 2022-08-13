@@ -49,7 +49,7 @@ const DoctorLandingScreen = () => {
       });
   };
   const unvisitedAppointments = appointments.filter((el) => {
-    return !el.visited;
+    return !el.visited && !el.expired;
   });
 
   const todayAppointment = unvisitedAppointments.filter((el) => {
@@ -74,6 +74,9 @@ const DoctorLandingScreen = () => {
   return (
     
       <div style={{ backgroundSize:'cover', paddingBottom:'10px'}}>
+        {
+          (window.localStorage.getItem("userEmail")) && 
+          <>
         {appointments.length > 0 && (
           <SearchBar placeholder="Search by name" data={appointments} />
         )}
@@ -82,13 +85,13 @@ const DoctorLandingScreen = () => {
             <h4 style={{color:'black'}}>Today's Appoinments</h4>
           )}
           <Grid container spacing={2}>
-
+          {/* edded8 */}
             {todayAppointment.length > 0 ? (
               todayAppointment.map((el, key) => {
                 return (
                   <Grid item xs={3} key={key}>
                     <Item style={{ backgroundColor: "transparent" }}>
-                      <Card style={{ backgroundColor: "#edded8" }}>
+                      <Card style={{ backgroundColor: "transparent" }}>
                         <CardActionArea
                           onClick={() => {
                             window.localStorage.setItem("id", el.ID);
@@ -101,7 +104,9 @@ const DoctorLandingScreen = () => {
                               variant="h5"
                               component="div"
                             >
-                              {el.patient[0].name}
+                            <i class="fas fa-ban" style={{color:"#FF0000"}}> name</i>
+
+                            {el.patient[0].name}
                             </Typography>
                             <Typography
                               variant="button"
@@ -133,7 +138,7 @@ const DoctorLandingScreen = () => {
               })
             ) : (
               <div>
-                <h4 style={{color:'black'}}>No Appointments Today</h4>
+                <h4 style={{color:'black', marginLeft:"18px"}}>No Appointments Today</h4>
               </div>
             )}
           </Grid>
@@ -143,13 +148,14 @@ const DoctorLandingScreen = () => {
           {nextAppointments.length > 0 && (
             <h4 style={{color:'black'}}>Upcoming Appoinments</h4>
           )}
-          <Grid container spacing={2}>
+          <Grid container spacing={2}>:
             {nextAppointments.length > 0 ? (
               nextAppointments.map((el, key) => {
+                // b5dee6
                 return (
                   <Grid item xs={3} key={key}>
                     <Item style={{ backgroundColor: "transparent" }}>
-                      <Card style={{backgroundColor:'#b5dee6'}}>
+                      <Card style={{backgroundColor:'transparent'}}>
                         <CardActionArea
                           onClick={() => {
                             window.localStorage.setItem("id", el.ID);
@@ -199,6 +205,8 @@ const DoctorLandingScreen = () => {
             )}
           </Grid>
         </Box>
+        </>
+}
       </div>
     
   );

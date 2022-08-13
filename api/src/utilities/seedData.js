@@ -103,7 +103,7 @@ const medData = async ()=>{
 
 const filterExpiredAppointment = async ()=>{
   const result = await axios.get(`http://localhost:${process.env.PORT}/appointment/expire`)
-  console.log(result.data)
+  //console.log(result.data)
 }
 
 

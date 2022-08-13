@@ -68,7 +68,7 @@ const PrescriptionHistory = React.forwardRef((props, ref) => {
 
 
   useEffect(()=>{
-    fetchPrescription()
+    window.localStorage.getItem("userEmail") && fetchPrescription()
     // console.log(presData)
   },[])
 
@@ -87,7 +87,10 @@ const PrescriptionHistory = React.forwardRef((props, ref) => {
   };
 
   return (
-    <>   
+    <>
+    {
+          (window.localStorage.getItem("userEmail")) && 
+    <div style={{margin:'auto', width: '80%'}}>   
     {data !== null &&
     <Box >
     <TableContainer
@@ -114,7 +117,10 @@ const PrescriptionHistory = React.forwardRef((props, ref) => {
         </TableCell>
       </TableRow>
           <TableRow>
-            <TableCell>
+            <TableCell style={{width: '25%'}}>
+              <div style={{marginLeft:'0px'}}> 
+
+              
               <h5>Complain</h5>
               
               <Complain
@@ -143,9 +149,12 @@ const PrescriptionHistory = React.forwardRef((props, ref) => {
                 
                 inModal={open}
               />
+              </div>
             </TableCell>
 
-            <TableCell style={{ verticalAlign: "top" }}>
+            <TableCell style={{ verticalAlign: "top", width:'75%'}}>
+              <div style={{marginLeft:'0px'}}>
+
               <MedicineView
                 medicines={prescribedMedicine}
                 
@@ -157,6 +166,8 @@ const PrescriptionHistory = React.forwardRef((props, ref) => {
               <br />
               <br />
               <NextVisitSignature nextVisit={nextVisit} handleNextVisit={handleNextVisit} inModal={open}/>
+                              
+              </div>
             </TableCell>
           </TableRow>
         </TableBody>
@@ -228,6 +239,8 @@ const PrescriptionHistory = React.forwardRef((props, ref) => {
       //   </Table>
       // </TableContainer>
       //   </div>
+}
+    </div>
 }
     </>
   );

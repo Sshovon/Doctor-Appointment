@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Form, Button } from "react-bootstrap";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import axios from "axios";
 
@@ -43,11 +43,33 @@ function RescheduleScreen() {
     console.log(response);
   };
 
+  const checkCredientials = async()=>{
+    await axios.post("/patient/check",{
+      nid,
+      ID: apid
+    }).then(async(response)=>{
+      console.log(response)
+      if(response.data.success){
+        await handleOTP()
+        setOpen(true);
+    setrs(true);
+      }else{
+        toast.error(`${response.data.error}`);
+        //alert(response.data.error);
+
+      }
+    }).catch(function (error) {
+      console.log(error);
+      // toast.error(error.response.data.error);
+    });
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    await handleOTP();
-    setOpen(true);
-    setrs(true);
+    //to do nid && ap id check
+    await checkCredientials()
+  
+    
   };
   const handleConfirmation = async () => {
     console.log(email, otp);
@@ -87,6 +109,7 @@ function RescheduleScreen() {
   };
 
   return (
+    <>
     <div>
       <br />
       <br />
@@ -155,7 +178,7 @@ function RescheduleScreen() {
         <DialogTitle>Registration</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To complete registration verify OTP sent to your mail
+            Otp is send to your email. Enter the otp here to procced further.
           </DialogContentText>
           <div
             style={{
@@ -204,6 +227,7 @@ function RescheduleScreen() {
         </DialogActions>
       </Dialog>
     </div>
+    </>
   );
 }
 

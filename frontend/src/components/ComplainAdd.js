@@ -1,5 +1,5 @@
 import { Autocomplete, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const defComplains = ["eat healthy food","exercise daily", "had fever for 3 days"]
 
@@ -9,11 +9,12 @@ function ComplainAdd({handleComplain}) {
     const handleEnter=(e)=>{
       console.log(e)
       if(e.key === 'Enter') {
-        handleComplain(e.target.value)
+      handleComplain(e.target.value)  
         setComplain("")
       }
       
     }
+
 
   return (
     <div>

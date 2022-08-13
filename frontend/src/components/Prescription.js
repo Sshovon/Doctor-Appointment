@@ -11,11 +11,15 @@ function Prescription() {
 
   return (
     <div className="wrapper">
+      {
+      (window.localStorage.getItem("userEmail")) && 
       <div className="prescription_form">
         <PrescriptionTable ref={componentRef} handlePrint={handlePrint} />
        
       </div>
+}
     </div>
+      
   );
 }
 

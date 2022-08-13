@@ -144,7 +144,7 @@ function MedicineAdd({ addMedicine }) {
             value={comment}
             required
             onChange={handleChangeComment}
-            style={{ marginLeft: "40px" }}
+            // style={{ marginLeft: "40px" }}
           />
         </div>
       </div>

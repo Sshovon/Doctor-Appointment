@@ -71,3 +71,9 @@
   .value {
     font-size: 40px;
   }
+
+  .nextVisit:disabled{
+    background-color: "blue";
+    color:'red'
+    
+  }

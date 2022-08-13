@@ -19,7 +19,7 @@ import axios from "axios";
 
 import DatePicker from "react-datepicker";
 import { addDays, getDay } from "date-fns";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useCallback } from "react";
@@ -102,7 +102,11 @@ const AppointmentScreen = () => {
         };
       }).then((data)=> {
         console.log(data)
-        simulateFetch(data)
+        if(data.error){
+          toast.error("Patient is not registered!")
+        }
+        else
+          simulateFetch(data)
       })
       .catch(function (error) {
         console.log(error);
@@ -121,7 +125,6 @@ const AppointmentScreen = () => {
 
   return (
     <div>
-      <Toaster />
       <br />
       <br />
       <FormContainer>

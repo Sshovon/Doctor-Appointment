@@ -31,12 +31,10 @@ function PatientDetails() {
         >
           <p> Name: {patient.patient[0].name} </p>
 
-          <p style={{ marginLeft: "100px" }}> Age: {patient.patient[0].age}</p>
-          <p style={{ marginLeft: "50px" }}> AppointmentID: #{patient.ID}</p>
-
-          <p style={{ marginLeft: "50px" }}> Email: {patient.patient[0].email} </p>
-
-          <p style={{ marginLeft: "50px" }}>
+          <p style={{ marginLeft: "25px" }}> Age: {patient.patient[0].age} years</p>
+          <p style={{ marginLeft: "25px" }}> AppointmentID: #{patient.ID}</p>
+          <p style={{ marginLeft: "25px" }}> Email: {patient.patient[0].email} </p>
+          <p style={{ marginLeft: "25px" }}>
             {" "}
             Date:{" "}
             {patient.visited

@@ -22,7 +22,7 @@ function OEAdd({handleOE}) {
             id="combo-box-demo"
             freeSolo
             options={defOEs}
-            sx={{ width: 250 }}
+            sx={{ width: 220 }}
             value={oe}
             onChange={(event, value) => {
                 console.log(event, value)

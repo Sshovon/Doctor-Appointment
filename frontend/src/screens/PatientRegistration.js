@@ -14,7 +14,7 @@ import {
   InputAdornment,
   Select,
   MenuItem,
-} from "@mui/material";
+} from "@mui/material"; 
 
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import FormContainer from "../components/FormContainer";
@@ -85,7 +85,7 @@ function PatientRegistration() {
         dob,
       })
       .then((response) => {
-        if (response.data.error) toast.error(response.data.error);
+        if (response.data.error) toast.error(`${response.data.error}`);
         else {
           toast.success("Registration successful");
           navigate("/appointment");
@@ -93,7 +93,7 @@ function PatientRegistration() {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.error);
+        toast.error(`${error.response.data.error}`);
       });
   };
 
@@ -109,7 +109,7 @@ function PatientRegistration() {
       })
       .catch(function (error) {
         console.log(error);
-        toast.error(error.response.data.error);
+        toast.error(`${error.response.data.error}`);
       });
 
     if (status === 200) await patientRegister();
@@ -132,10 +132,8 @@ function PatientRegistration() {
 
   return (
     <div>
-      <Toaster />
       <br />
       <br />
-      
       <FormContainer>
         <h1>Patient Registration</h1>
         <br />
