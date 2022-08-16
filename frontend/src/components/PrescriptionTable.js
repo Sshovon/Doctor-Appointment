@@ -43,7 +43,7 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
 
   const addMedicine = (newMed) => {
     setPrescribedMedicine((prevState) => {
-      return [newMed, ...prevState];
+      return [...prevState,newMed];
     });
   };
   const deleteMedicineFromPrescription = (id) => {
@@ -59,7 +59,7 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
   };
   const addDiagnosis = (newDiagnosis) => {
     setPrescribedDiagnosis((prevState) => {
-      return [newDiagnosis, ...prevState];
+      return [ ...prevState, newDiagnosis];
     });
   };
 
@@ -99,21 +99,22 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
 
   const handleAdvise = (newAdvice) => {
     setAdvise((prevState)=>{
-      return [newAdvice, ...prevState]
+      return [...prevState,newAdvice]
     })
   };
   const handleComplain = (newComplain) => {
     setComplains((prevState) => {
-      return [newComplain, ...prevState];
+      return [ ...prevState,newComplain];
     });
   };
   const handleOE = (newOE) => {
     setOE((prevState)=>{
-      return [newOE, ...prevState]
+      return [...prevState, newOE]
     });
   };
-  const handleNextVisit = (e) => {
-    setNextVisit(e.target.value);
+  const handleNextVisit = (date) => {
+    const d=date.toLocaleDateString
+    setNextVisit(date);
   };
 
   // const [inModal, setInModal] = useState(false)
@@ -219,6 +220,7 @@ const PrescriptionTable = React.forwardRef((props, ref) => {
             </TableRow >
 
             <TableRow>
+
               <TableCell align="center" colSpan={2}>
                 <Button
                   variant="contained"

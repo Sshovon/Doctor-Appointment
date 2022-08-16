@@ -13,6 +13,7 @@ function NextVisitSignature({ nextVisit, handleNextVisit, inModal }) {
     const day = getDay(date);
     return day !== 0 && day !== 6;
   };
+  console.log(nextVisit)
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

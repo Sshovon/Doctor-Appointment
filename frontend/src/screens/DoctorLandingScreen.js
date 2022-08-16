@@ -104,7 +104,7 @@ const DoctorLandingScreen = () => {
                               variant="h5"
                               component="div"
                             >
-                            <i class="fas fa-ban" style={{color:"#FF0000"}}> name</i>
+                            {/* <i class="fas fa-ban" style={{color:"#FF0000"}}> name</i> */}
 
                             {el.patient[0].name}
                             </Typography>
